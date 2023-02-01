@@ -1,0 +1,24 @@
+﻿<Window x:Class="Exercise1.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Exercise1"
+        mc:Ignorable="d"
+        Title="Hello SoupMan" Height="600" Width="960" Background="#FF140B0B" WindowStartupLocation="CenterScreen" WindowState="Maximized">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="2*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1*"/>
+        </Grid.ColumnDefinitions>
+        <TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Center" FontSize="22" Width="160" Height="33" Background="#FF341CE3" MouseDown="HelloFromMe"><Run Language="da-dk" Text="Hej Soupman"/></TextBlock>
+        <TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Center" FontSize="42" Width="266" Height="66" Background="#FF1CE32F" Grid.Column="1" Grid.Row="1" MouseDown="HelloFromMe"><Run Language="da-dk" Text="Hej Soupman"/></TextBlock>
+        <TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Center" Width="10" Height="180" Background="#FFF1DB09" Grid.Row="1" MouseDown="HelloFromMe"><Run Language="da-dk" Text="Hej Soupman"/></TextBlock>
+        <TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Center" FontSize="42" Width="260" Height="66" Background="#FFE31C1C" Grid.Column="1" MouseDown="HelloFromMe"><Run Language="da-dk" Text="Hej Soupman"/></TextBlock>
+
+    </Grid>
+</Window>
