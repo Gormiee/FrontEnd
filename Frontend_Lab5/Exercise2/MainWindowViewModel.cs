@@ -2,6 +2,8 @@
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using System.Windows.Media;
+using Prism.Commands;
 using Prism.Mvvm;
 
 namespace Exercise2
@@ -25,37 +27,44 @@ namespace Exercise2
 
         //ObservableCollection<Agent> family;
 
-    //public ObservableCollection<Agent> Family
+        //public ObservableCollection<Agent> Family
+        //{
+        //    get { return family; }
+        //    set
+        //    {
+        //        if (family == value)
+        //        {
+        //            return;
+        //        }
+
+        //        family = value;
+        //        Notify();
+        //    }
+        //}
+
+        private Agent currentPerson;
+        public Agent CurrentPerson
+        {
+            get { return currentPerson; }
+            set { SetProperty(ref currentPerson, value); }
+        }
+
+        //Agent currentPerson;
+
+    //public Agent CurrentPerson
     //{
-    //    get { return family; }
+    //    get { return currentPerson; }
     //    set
     //    {
-    //        if (family == value)
+    //        if (currentPerson == value)
     //        {
     //            return;
     //        }
 
-    //        family = value;
+    //        currentPerson = value;
     //        Notify();
     //    }
     //}
-
-    Agent currentPerson;
-
-    public Agent CurrentPerson
-    {
-        get { return currentPerson; }
-        set
-        {
-            if (currentPerson == value)
-            {
-                return;
-            }
-
-            currentPerson = value;
-            Notify();
-        }
-    }
 
     // INotifyPropertyChanged Members
     public event PropertyChangedEventHandler PropertyChanged;
@@ -64,5 +73,31 @@ namespace Exercise2
     {
         PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propName));
     }
+
+    private int currentIndex = 0;
+
+    public int CurrentIndex
+    {
+        get { return currentIndex; }
+        set { SetProperty(ref currentIndex, value); }
+    }
+
+
+        private DelegateCommand? _previusCommand;
+    public DelegateCommand PreviusCommand =>
+        _previusCommand ?? (_previusCommand = new DelegateCommand(ExecutePreviusCommand, CanExecutePreviusCommand).ObservesProperty(() => CurrentIndex));
+    void ExecutePreviusCommand()
+    {
+        if (CurrentIndex > 0)
+            --CurrentIndex;
+    }
+    bool CanExecutePreviusCommand()
+    {
+        if (CurrentIndex > 0)
+            return true;
+        else
+            return false;
+    }
+
     }
 }
