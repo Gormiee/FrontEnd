@@ -19,6 +19,7 @@
         <TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Center" FontSize="42" Width="266" Height="66" Background="#FF1CE32F" Grid.Column="1" Grid.Row="1" MouseDown="HelloFromMe"><Run Language="da-dk" Text="Hej Soupman"/></TextBlock>
         <TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Center" Width="10" Height="180" Background="#FFF1DB09" Grid.Row="1" MouseDown="HelloFromMe"><Run Language="da-dk" Text="Hej Soupman"/></TextBlock>
         <TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Center" FontSize="42" Width="260" Height="66" Background="#FFE31C1C" Grid.Column="1" MouseDown="HelloFromMe"><Run Language="da-dk" Text="Hej Soupman"/></TextBlock>
+        <TextBox HorizontalAlignment="Left" Margin="360,104,0,0" Grid.Row="1" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
 
     </Grid>
 </Window>
