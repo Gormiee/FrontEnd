@@ -1,0 +1,24 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net7.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Image\12-LightOFF.bmp" />
+    <None Remove="Image\12-LightON.bmp" />
+    <None Remove="Image\12-SwitchDown.bmp" />
+    <None Remove="Image\12-SwitchUp.bmp" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Image\12-LightOFF.bmp" />
+    <Resource Include="Image\12-LightON.bmp" />
+    <Resource Include="Image\12-SwitchDown.bmp" />
+    <Resource Include="Image\12-SwitchUp.bmp" />
+  </ItemGroup>
+
+</Project>
