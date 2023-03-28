@@ -3,7 +3,6 @@
     font-family: Arial, Helvetica, sans-serif;
     font-size: 12px;
     color: #000000;
-    margin: 0px;
     padding: 0px;
 }
 h1 {
@@ -14,4 +13,24 @@ h1 {
     margin-left: auto;
     margin-right: AUTO;
     width: 60%;
+}
+div{
+    background-position: center;
+    font-size: 1rem;
+    text-align: left;
+    margin-left: auto;
+    margin-right: AUTO;
+    width: 60%;
+}
+nav {
+    background-color: #ccaa66;
+    background-position: center;
+    font-size: 1rem;
+    text-align: center;
+    margin-left: auto;
+    margin-right: AUTO;
+    width: 60%;
+}
+dt {
+    font-weight: bold;
 }
