@@ -1,0 +1,30 @@
+﻿<!--<Application x:Class="Vinter22_Eksamen_boardgames.App"
+xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+xmlns:local="clr-namespace:Vinter22_Eksamen_boardgames"
+StartupUri="Views/MainWindow.xaml">
+<Application.Resources>
+
+</Application.Resources>
+</Application>-->
+
+<unity:PrismApplication
+    x:Class="Vinter22_Eksamen_boardgames.App"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="clr-namespace:Vinter22_Eksamen_boardgames"
+    xmlns:unity="http://prismlibrary.com/">
+    <Application.Resources>
+
+        <SolidColorBrush x:Key="BrushBackground" Color="GhostWhite" />
+
+        <Style TargetType="{x:Type Button}">
+            <Style.Setters>
+                <Setter Property="Padding" Value="10,2" />
+                <Setter Property="Margin" Value="5" />
+                <Setter Property="FontWeight" Value="Bold" />
+            </Style.Setters>
+        </Style>
+
+    </Application.Resources>
+</unity:PrismApplication>
