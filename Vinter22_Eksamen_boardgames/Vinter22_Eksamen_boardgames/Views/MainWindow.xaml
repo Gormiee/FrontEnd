@@ -5,6 +5,8 @@
         xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:prism="http://prismlibrary.com/"
+        xmlns:local="clr-namespace:Vinter22_Eksamen_boardgames.Views"
+        xmlns:CollectionView="clr-namespace:System.Windows.Data;assembly=PresentationFramework"
         Title="{Binding Path=Title}"
         Width="830"
         Height="680"
@@ -44,11 +46,13 @@
             Grid.Row="1"
             Grid.Column="0"
             Grid.RowSpan="1">
-            <TextBlock
-                Text="Search:" />
-            <TextBox
-                Text="{Binding TextToFilter, UpdateSourceTrigger=PropertyChanged}" />
         </StackPanel>
+        <StackPanel Grid.Row="0" Grid.Column="1" Orientation="Horizontal" Margin="5">
+            <TextBox x:Name="SearchTextBox" Width="200" Margin="0,0,5,0" Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}" />
+
+            <Button Content="Search" Command="{Binding SearchCommand}" />
+        </StackPanel>
+
         <DataGrid
             x:Name="GamesBox"
             Grid.Row="1"
@@ -65,7 +69,7 @@
             RowHeaderWidth="20"
             SelectionUnit="FullRow"
             IsReadOnly="True"
-            ItemsSource="{Binding Path=GameCollection}"
+            ItemsSource="{Binding Path=AllGames}"
             SelectedItem="{Binding Path=CurrentGame}">
             <i:Interaction.Triggers>
                 <i:EventTrigger EventName="MouseDoubleClick">

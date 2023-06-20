@@ -22,7 +22,7 @@ namespace Vinter22_Eksamen_boardgames.ViewModels
         private IDialogService _dialogService;
         private readonly string _appTitle = "GameShop";
         private string _filePath = "";
-        private Game _currentGame;
+        private Game? _currentGame;
 
 
         public MainWindowViewModel()
@@ -37,29 +37,16 @@ namespace Vinter22_Eksamen_boardgames.ViewModels
 
         }
 
-        private ObservableCollection<Game> _allgames = new ObservableCollection<Game>();
+        private ObservableCollection<Game>? _allgames = new ObservableCollection<Game>();
 
-        public ObservableCollection<Game> AllGames
+        public ObservableCollection<Game>? AllGames
         {
             get { return _allgames; }
             set { SetProperty(ref _allgames, value); }
         }
 
-        private ListCollectionView _gameCollection;
 
-        public ListCollectionView GameCollection
-        {
-            get { return _gameCollection; }
-            set { SetProperty(ref _gameCollection, value); }
-        }
-
-        public ObservableCollection<Game> Games
-        {
-            get { return _allgames; }
-            set { SetProperty(ref _allgames, value); }
-        }
-
-        public Game CurrentGame
+        public Game? CurrentGame
         {
             get { return _currentGame; }
             set { SetProperty(ref _currentGame, value); }
@@ -118,17 +105,54 @@ namespace Vinter22_Eksamen_boardgames.ViewModels
             return CurrentGame != null;
         }
 
-        private string _textToFilter;
-
-        public string TextToFilter
+        private string _searchText;
+        public string SearchText
         {
-            get { return _textToFilter; }
-            set
-            {
-                SetProperty(ref _textToFilter, value);
-                GameCollection.Refresh();
-            }
+            get { return _searchText; }
+            set { SetProperty(ref _searchText, value); }
         }
+
+
+        private DelegateCommand _searchCommand;
+        public DelegateCommand SearchCommand =>
+            _searchCommand ?? (_searchCommand = new DelegateCommand(ExecuteSearchCommand, CanExecuteSearch));
+
+        private void ExecuteSearchCommand()
+        {
+            string searchText = SearchText;
+            ICollectionView view = CollectionViewSource.GetDefaultView(AllGames);
+
+            if (!string.IsNullOrWhiteSpace(searchText))
+            {
+                view.Filter = item => ((Game)item).Name.ToLower().Contains(searchText.ToLower());
+            }
+            else
+            {
+                view.Filter = null;
+            }
+
+            view.Refresh(); // Refresh the view to apply the filter
+        }
+
+        private bool CanExecuteSearch()
+        {
+            if (string.IsNullOrWhiteSpace(SearchText))
+                return true;
+
+            string searchTextLower = SearchText.ToLower();
+            foreach (Game game in AllGames)
+            {
+                if (game.Name != null && game.Name.ToLower().Contains(searchTextLower))
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+
+
 
     }
 }
