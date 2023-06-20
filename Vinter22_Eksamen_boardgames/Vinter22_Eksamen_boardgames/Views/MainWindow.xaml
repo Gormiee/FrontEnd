@@ -19,7 +19,7 @@
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="150" />
-            <ColumnDefinition Width="600" />
+            <ColumnDefinition Width="500" />
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
         <StackPanel
@@ -28,10 +28,10 @@
             Grid.ColumnSpan="3">
             <Menu FontSize="15">
                 <MenuItem Header="File">
-                    <MenuItem Command="{Binding Path=NewFileCommand}" Header="New" />
+                    <!--<MenuItem Command="{Binding Path=NewFileCommand}" Header="New" />
                     <MenuItem Command="{Binding Path=OpenFileCommand}" Header="Open" />
                     <MenuItem Command="{Binding Path=SaveFileCommand}" Header="Save" />
-                    <MenuItem Command="{Binding Path=SaveFileAsCommand}" Header="Save As" />
+                    <MenuItem Command="{Binding Path=SaveFileAsCommand}" Header="Save As" />-->
                 </MenuItem>
             </Menu>
             <TextBlock
@@ -47,26 +47,25 @@
             <TextBlock
                 Text="Search:" />
             <TextBox
-                Text="Hello" />
+                Text="{Binding TextToFilter, UpdateSourceTrigger=PropertyChanged}" />
         </StackPanel>
         <DataGrid
-            Name="GamesBox"
+            x:Name="GamesBox"
             Grid.Row="1"
             Grid.Column="1"
             Margin="5"
             MaxWidth="866"
             ScrollViewer.CanContentScroll="True"
             ScrollViewer.VerticalScrollBarVisibility="Auto"
-            ScrollViewer.HorizontalScrollBarVisibility="Visible"
+            ScrollViewer.HorizontalScrollBarVisibility="Auto"
 
             CanUserAddRows="False"
-            CanUserDeleteRows="False"
-
-            ColumnWidth="Auto"
-            IsReadOnly="True"
-            IsSynchronizedWithCurrentItem="True"
-            ItemsSource="{Binding Path=Games}"
             AutoGenerateColumns="False"
+            HeadersVisibility="All"
+            RowHeaderWidth="20"
+            SelectionUnit="FullRow"
+            IsReadOnly="True"
+            ItemsSource="{Binding Path=GameCollection}"
             SelectedItem="{Binding Path=CurrentGame}">
             <i:Interaction.Triggers>
                 <i:EventTrigger EventName="MouseDoubleClick">
@@ -79,23 +78,26 @@
             </i:Interaction.Triggers>
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Title" Binding="{Binding Path=Name}" />
+                <DataGridTextColumn Header="Rating" Binding="{Binding Path=Rating}" />
+                <DataGridTextColumn Header="Availability" Binding="{Binding Path=Availability}" />
+
             </DataGrid.Columns>
         </DataGrid>
-        <StackPanel
-            Grid.Row="1"
-            Grid.Column="2">
-            <Button
-                HorizontalAlignment="Center"
-                VerticalAlignment="Top"
-                Command="{Binding Path=AddCommand}"
-                Content="Add Rating" Height="32" Margin="0,5,0,0" Width="120" />
-            <Button
-                HorizontalAlignment="Center"
-                VerticalAlignment="Top"
-                Command="{Binding Path=AddCommand}"
-                Content="Add Game" Height="32" Margin="0,5,0,0" Width="120" />
+        <!--<StackPanel
+        Grid.Row="1"
+        Grid.Column="2">
+        <Button
+        HorizontalAlignment="Center"
+        VerticalAlignment="Top"
+        Command="{Binding Path=AddCommand}"
+        Content="Add Rating" Height="32" Margin="0,5,0,0" Width="130" />
+        <Button
+        HorizontalAlignment="Center"
+        VerticalAlignment="Top"
+        Command="{Binding Path=AddCommand}"
+        Content="Add Game" Height="32" Margin="0,5,0,0" Width="130" />
 
-        </StackPanel>
+        </StackPanel>-->
 
     </Grid>
 </Window>

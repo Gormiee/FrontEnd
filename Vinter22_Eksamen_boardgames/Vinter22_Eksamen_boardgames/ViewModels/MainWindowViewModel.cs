@@ -9,33 +9,54 @@ using Vinter22_Eksamen_boardgames.Data;
 using System.Windows;
 using Microsoft.Win32;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
+using System.Windows.Data;
+using System.Windows.Controls;
+
 
 namespace Vinter22_Eksamen_boardgames.ViewModels
 {
 	public class MainWindowViewModel : BindableBase
 	{
-        private ObservableCollection<Game> _games = new ObservableCollection<Game>();
+        
         private IDialogService _dialogService;
         private readonly string _appTitle = "GameShop";
         private string _filePath = "";
         private Game _currentGame;
 
-        public MainWindowViewModel( IDialogService dialogService )
-        {
-            _dialogService = dialogService;
-            //_games = FileTranslator.ReadFile("games.xml");
-            _games.Add(new Game("Chess", "A game of chess", "1990", 2, 2, 0, false));
-            _games.Add(new Game("Monopoly", "A game of monopoly", "1990", 2, 4, 0, true));
-            _games.Add(new Game("Risk", "A game of risk", "1990", 2, 6, 0, true));
-            _games.Add(new Game("Catan", "A game of catan", "1990", 2, 4, 0, true));
-            _currentGame = _games[0];
 
+        public MainWindowViewModel()
+        {
+            //_dialogService = dialogService;
+            //_games = FileTranslator.ReadFile("games.xml");
+            _allgames.Add(new Game("Chess", "A game of chess", "1990", 2, 2, 0, false));
+            _allgames.Add(new Game("Monopoly", "A game of monopoly", "1990", 2, 4, 0, true));
+            _allgames.Add(new Game("Risk", "A game of risk", "1990", 2, 6, 0, true));
+            _allgames.Add(new Game("Catan", "A game of catan", "1990", 2, 4, 0, true));
+            _currentGame = _allgames[0];
+
+        }
+
+        private ObservableCollection<Game> _allgames = new ObservableCollection<Game>();
+
+        public ObservableCollection<Game> AllGames
+        {
+            get { return _allgames; }
+            set { SetProperty(ref _allgames, value); }
+        }
+
+        private ListCollectionView _gameCollection;
+
+        public ListCollectionView GameCollection
+        {
+            get { return _gameCollection; }
+            set { SetProperty(ref _gameCollection, value); }
         }
 
         public ObservableCollection<Game> Games
         {
-            get { return _games; }
-            set { SetProperty(ref _games, value); }
+            get { return _allgames; }
+            set { SetProperty(ref _allgames, value); }
         }
 
         public Game CurrentGame
@@ -79,19 +100,6 @@ namespace Vinter22_Eksamen_boardgames.ViewModels
             }
         }
 
-        private DelegateCommand _changeAvail;
-        public DelegateCommand ChangeAvail =>
-            _changeAvail ?? (_changeAvail = new DelegateCommand(_changeAvailExecute, CanExecuteChangeAvail).ObservesProperty(() => CurrentGame));
-
-        private void _changeAvailExecute()
-        {
-            _currentGame.Availability = false;
-            RaisePropertyChanged(nameof(Games));
-        }
-        private bool CanExecuteChangeAvail()
-        {
-            return CurrentGame != null;
-        }
 
         private DelegateCommand _availChange;
         public DelegateCommand AvailChange =>
@@ -110,7 +118,17 @@ namespace Vinter22_Eksamen_boardgames.ViewModels
             return CurrentGame != null;
         }
 
+        private string _textToFilter;
 
+        public string TextToFilter
+        {
+            get { return _textToFilter; }
+            set
+            {
+                SetProperty(ref _textToFilter, value);
+                GameCollection.Refresh();
+            }
+        }
 
     }
 }
