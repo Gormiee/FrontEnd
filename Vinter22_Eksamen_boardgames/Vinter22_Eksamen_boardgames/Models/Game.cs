@@ -19,6 +19,17 @@ namespace Vinter22_Eksamen_boardgames.Models
         private List<int> _ratings;
         bool _available;
 
+        public Game()
+        {
+            _name = "";
+            _description = "";
+            _releaseyear = "";
+            _minplayers = 1;
+            _maxplayers = 2;
+            _rating = 0;
+            _available = true;
+            _ratings = new List<int>();
+        }
         public Game(string name, string description, string ry, int players, int maxplayers, int rating, Boolean available)
         {
             _name = name;

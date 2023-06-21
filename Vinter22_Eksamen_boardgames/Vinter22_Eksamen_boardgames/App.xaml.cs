@@ -26,6 +26,7 @@ namespace Vinter22_Eksamen_boardgames
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
+            containerRegistry.RegisterDialog<AddGameDialog, AddGameDialogViewModel>();
         }
 
         public Game Games { get; set; }
